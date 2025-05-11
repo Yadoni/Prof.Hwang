@@ -11,6 +11,7 @@ from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+st.write("Secrets loaded:", list(st.secrets.keys()))
 # === Google Sheets 인증 설정 ===
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
