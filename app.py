@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
-
 import streamlit as st
 import pandas as pd
 import requests
@@ -11,8 +8,6 @@ from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-st.write("Google Sheets list:")
-st.write([sh.title for sh in client.openall()])
 # === Google Sheets 인증 설정 ===
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
@@ -22,6 +17,10 @@ creds = ServiceAccountCredentials.from_json_keyfile_dict(
     scope
 )
 client = gspread.authorize(creds)
+
+# ✅ 연결된 구글 시트 목록 출력 (디버깅용)
+st.write("Google Sheets list:")
+st.write([sh.title for sh in client.openall()])
 
 # === 시트 열기 ===
 sheet = client.open("professor_messages").sheet1  # 시트 이름 확인 필요
