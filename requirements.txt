@@ -1,4 +1,5 @@
 streamlit
+streamlit-javascript
 gspread
 oauth2client
 requests
