@@ -51,7 +51,7 @@ else:
 # === 메시지 입력 폼
 with st.form("message_form"):
     name = st.text_input("이름 (익명 가능)", "")
-    level = st.selectbox("신분", ["재학생", "졸업생", "휴학생"])
+    level = st.selectbox("level", ["재학생", "졸업생", "휴학생"])
     message = st.text_area("메시지를 작성해 주세요 (100자 이내)", max_chars=100)
     submit = st.form_submit_button("메시지 보내기")
 
@@ -81,24 +81,24 @@ map_center = [df["lat"].mean(), df["lon"].mean()]
 m = folium.Map(location=map_center, zoom_start=6)
 
 for _, row in df.iterrows():
-    color = "blue" if row["신분"] == "재학생" else ("green" if row["신분"] == "휴학생" else "red")
+    color = "blue" if row["level"] == "재학생" else ("green" if row["level"] == "휴학생" else "red")
     folium.Marker(
         location=[row["lat"], row["lon"]],
-        popup=f"{row['이름']} ({row['신분']}): {row['메시지']}",
+        popup=f"{row['name']} ({row['level']}): {row['message']}",
         icon=folium.Icon(color=color)
     ).add_to(m)
 
 st_folium(m, width=700, height=500)
 
 # === 통계 차트
-st.subheader("📊 신분별 메시지 수")
-st.bar_chart(df["신분"].value_counts())
+st.subheader("📊 level별 메시지 수")
+st.bar_chart(df["level"].value_counts())
 
 # === 워드클라우드
 st.subheader("☁️ 메시지 워드클라우드")
 
-if not df["메시지"].empty:
-    text = " ".join(df["메시지"].astype(str))
+if not df["message"].empty:
+    text = " ".join(df["message"].astype(str))
 
     wc = WordCloud(
         font_path="NanumGothic.ttf",  # ✔ 여기서 나눔고딕 폰트 사용
