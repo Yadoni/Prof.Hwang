@@ -49,8 +49,8 @@ else:
 
 # === 메시지 입력 폼
 with st.form("message_form"):
-    name = st.text_input("이름 (선택)", "")
-    level = st.selectbox("소속 과정", ["석사", "박사"])
+    name = st.text_input("이름 (익명 가능)", "")
+    level = st.selectbox("신분", ["재학생", "졸업생"])
     message = st.text_area("메시지를 작성해 주세요 (100자 이내)", max_chars=100)
     submit = st.form_submit_button("메시지 보내기")
 
@@ -60,7 +60,7 @@ if submit:
         st.warning("메시지를 입력해 주세요.")
     else:
         row = [
-            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            datetime.now().strftime("%Y-%m-%d"),
             name if name else "익명",
             level,
             message,
