@@ -77,13 +77,13 @@ df = pd.DataFrame(records)
 
 # === 지도 시각화
 st.subheader("🗺️ 메시지 지도")
-map_center = [df["위도"].mean(), df["경도"].mean()]
+map_center = [df["lat"].mean(), df["lon"].mean()]
 m = folium.Map(location=map_center, zoom_start=6)
 
 for _, row in df.iterrows():
     color = "blue" if row["신분"] == "재학생" else ("green" if row["신분"] == "휴학생" else "red")
     folium.Marker(
-        location=[row["위도"], row["경도"]],
+        location=[row["lat"], row["lon"]],
         popup=f"{row['이름']} ({row['신분']}): {row['메시지']}",
         icon=folium.Icon(color=color)
     ).add_to(m)
