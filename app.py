@@ -24,12 +24,13 @@ st.title("📨 황승식 교수님께 감사 메시지 남기기")
 st.info("📍 현재 위치 정보를 수집 중입니다. 브라우저 위치 권한을 허용해 주세요.")
 coords = st_javascript("navigator.geolocation.getCurrentPosition((pos) => pos.coords);")
 
-if coords is None or coords.get("latitude") is None:
-    st.warning("위치 정보를 사용할 수 없습니다. 브라우저 설정을 확인해 주세요.")
-else:
+if isinstance(coords, dict) and coords.get("latitude") is not None:
+    # GPS 좌표를 사용할 수 있는 경우
     lat = coords["latitude"]
     lon = coords["longitude"]
-    st.success(f"📌 위치 확인됨: {lat:.4f}, {lon:.4f}")
+    ...
+else:
+    st.warning("위치 정보를 사용할 수 없습니다. 브라우저 설정을 확인해 주세요.")
 
     # === 메시지 입력 폼 ===
     with st.form("message_form"):
