@@ -18,9 +18,6 @@ creds = ServiceAccountCredentials.from_json_keyfile_dict(
 )
 client = gspread.authorize(creds)
 
-# ✅ 연결된 구글 시트 목록 출력 (디버깅용)
-st.write("Google Sheets list:")
-st.write([sh.title for sh in client.openall()])
 
 # === 시트 열기 ===
 sheet = client.open("professor_messages").sheet1  # 시트 이름 확인 필요
