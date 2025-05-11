@@ -50,7 +50,7 @@ else:
 # === 메시지 입력 폼
 with st.form("message_form"):
     name = st.text_input("이름 (익명 가능)", "")
-    level = st.selectbox("신분", ["재학생", "졸업생"])
+    level = st.selectbox("신분", ["재학생", "졸업생", "휴학생"])
     message = st.text_area("메시지를 작성해 주세요 (100자 이내)", max_chars=100)
     submit = st.form_submit_button("메시지 보내기")
 
