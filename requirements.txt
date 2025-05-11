@@ -1,6 +1,8 @@
 streamlit
-streamlit-javascript
 gspread
 oauth2client
-requests
 pandas
+matplotlib
+wordcloud
+streamlit-folium
+streamlit-javascript
