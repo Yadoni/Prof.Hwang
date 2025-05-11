@@ -91,7 +91,7 @@ for _, row in df.iterrows():
 st_folium(m, width=700, height=500)
 
 # === 통계 차트
-st.subheader("📊 level별 메시지 수")
+st.subheader("📊 신분별 메시지 수")
 st.bar_chart(df["level"].value_counts())
 
 # === 워드클라우드
