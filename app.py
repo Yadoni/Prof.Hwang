@@ -96,9 +96,19 @@ st.bar_chart(df["신분"].value_counts())
 
 # === 워드클라우드
 st.subheader("☁️ 메시지 워드클라우드")
+
 if not df["메시지"].empty:
     text = " ".join(df["메시지"].astype(str))
-    wc = WordCloud(font_path="NanumGothic.ttf", background_color="white").generate(text)
+
+    wc = WordCloud(
+        font_path="NanumGothic.ttf",  # ✔ 여기서 나눔고딕 폰트 사용
+        background_color="white",
+        width=800,
+        height=400
+    ).generate(text)
+
     plt.imshow(wc, interpolation="bilinear")
     plt.axis("off")
     st.pyplot(plt)
+else:
+    st.info("메시지가 아직 없습니다.")
