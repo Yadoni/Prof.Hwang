@@ -33,10 +33,19 @@ if isinstance(coords, dict) and coords.get("latitude") is not None:
     lon = coords["longitude"]
     st.success(f"📌 위치 확인됨: {lat:.4f}, {lon:.4f}")
 else:
-    # 북한 내 무작위 좌표 생성
-    lat = round(random.uniform(37.5, 43.0), 6)
-    lon = round(random.uniform(124.0, 130.5), 6)
-    st.warning(f"⚠️ 위치 정보를 사용할 수 없습니다. 북한 내 무작위 좌표가 사용됩니다: {lat}, {lon}")
+    # 대한민국 바다 영역 정의
+    sea_areas = {
+        "남해": {"lat": (33.0, 34.5), "lon": (126.0, 129.5)},
+        "동해": {"lat": (36.0, 38.5), "lon": (129.5, 131.5)},
+        "서해": {"lat": (34.5, 37.5), "lon": (124.5, 126.5)}
+    }
+
+    selected_sea = random.choice(list(sea_areas.keys()))
+    sea = sea_areas[selected_sea]
+    lat = round(random.uniform(*sea["lat"]), 6)
+    lon = round(random.uniform(*sea["lon"]), 6)
+
+    st.warning(f"🌊 위치 정보를 사용할 수 없습니다. {selected_sea} 바다 위 무작위 좌표가 사용됩니다: {lat}, {lon}")
 
 # === 메시지 입력 폼
 with st.form("message_form"):
