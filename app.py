@@ -6,6 +6,7 @@ import streamlit as st
 from streamlit_javascript import st_javascript
 import pandas as pd
 from datetime import datetime
+import random
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -32,10 +33,10 @@ if isinstance(coords, dict) and coords.get("latitude") is not None:
     lon = coords["longitude"]
     st.success(f"📌 위치 확인됨: {lat:.4f}, {lon:.4f}")
 else:
-    # 기본 좌표: 평양
-    lat = 39.0392193
-    lon = 125.7625241
-    st.warning(f"⚠️ 위치 정보를 사용할 수 없습니다. 기본 좌표가 사용됩니다: {lat}, {lon}")
+    # 북한 내 무작위 좌표 생성
+    lat = round(random.uniform(37.5, 43.0), 6)
+    lon = round(random.uniform(124.0, 130.5), 6)
+    st.warning(f"⚠️ 위치 정보를 사용할 수 없습니다. 북한 내 무작위 좌표가 사용됩니다: {lat}, {lon}")
 
 # === 메시지 입력 폼
 with st.form("message_form"):
