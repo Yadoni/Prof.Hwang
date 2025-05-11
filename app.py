@@ -20,7 +20,7 @@ client = gspread.authorize(creds)
 
 
 # === 시트 열기 ===
-sheet = client.open("professor_messages").sheet1  # 시트 이름 확인 필요
+sheet = client.open_by_key("1GzHvQUcgFqlUnyBOT2udLcHjslFjsMazlGPIUIDGG14/edit?gid=0#gid=0").sheet1  # 시트 이름 확인 필요
 
 # === IP 기반 위치 자동 수집 ===
 try:
